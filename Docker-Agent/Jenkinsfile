@@ -1,5 +1,5 @@
 pipeline {
-  agent any  // This will run on any available agent
+  agent any
   stages {
     stage('Check Node.js Version') {
       steps {
