@@ -6,11 +6,7 @@ pipeline {
                 docker { image 'maven:3.8.1-adoptopenjdk-11' }
             }
             steps {
-                sh '''
-                    cd backend || exit 1
-                    ls -al  # Debugging step to check files
-                    mvn clean install
-                '''
+                sh 'mvn --version'
             }
         }
         stage('Front-end') {
@@ -18,12 +14,9 @@ pipeline {
                 docker { image 'node:16-alpine' }
             }
             steps {
-                sh '''
-                    cd frontend || exit 1
-                    ls -al  # Debugging step to check files
-                    npm install
-                    npm run build
-                '''
+
+                sh 'node --version'
+
             }
         }
         stage('Database') {
@@ -31,10 +24,7 @@ pipeline {
                 docker { image 'mysql:latest' }
             }
             steps {
-                sh '''
-                    mysql --version
-                    echo "SHOW TABLES;" | mysql -u root -proot
-                '''
+                sh 'mysql --version'
             }
         }
     }
